@@ -12,6 +12,7 @@ import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from '../movieReviews'
 
+
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
     display: "flex",
