@@ -1,20 +1,18 @@
-//todo - add to must watch will be implemented later
-//button does not render anything yetgit 
-
-import React/*, { useContext }*/ from "react";
-//import { MoviesContext } from "../../contexts/moviesContext";
+import React, { useContext } from "react";
+import { MoviesContext } from "../../contexts/moviesContext";
 import IconButton from "@material-ui/core/IconButton";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 
 const AddToPlaylistsIcon = ({ movie }) => {
-  //const context = useContext(MoviesContext);
+  const context = useContext(MoviesContext);
 
-  /*const handleAddToFavourites = (e) => {
+  const handleAddToPlaylist = (e) => {
     e.preventDefault();
-    context.addToFavourites(movie);
-  };*/
+    context.addToPlaylist(movie);
+    console.log(movie);
+  };
   return (
-    <IconButton aria-label="add to favorites" /*onClick={handleAddToFavourites}*/>
+    <IconButton aria-label="add to favorites" onClick={handleAddToPlaylist}>
       <PlaylistAddIcon color="primary" fontSize="large" />
     </IconButton>
   );
