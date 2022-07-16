@@ -20,7 +20,7 @@ const HomePage = (props) => {
   // These three lines are redundant; we will replace them laterg.
   const favourites = movies.filter(m => m.favouurite)
   localStorage.setItem('favourites', JSON.stringify(favourites))
-  const addToFavourites = (movieId) => true 
+  //const addToFavourites = (movieId) => true 
 
   return (
     <PageTemplate
