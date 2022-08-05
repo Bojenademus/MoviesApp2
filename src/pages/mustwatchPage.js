@@ -14,21 +14,21 @@ const MustwatchPage = () => {
   const mustwatchMoviesQueries = useQueries(
     movieIds.map((movieId) => {
       return {
-        queryKey: ["movie", { id: movieId }],
+        queryKey: ["upcoming movies", { id: movieId }],
         queryFn: getMovie,
       };
     })
   );
   // Check if any of the parallel queries is still loading.
-  const isLoading = mustwatchMoviesQueries.find((m) => m.isLoading === true);
+  const isLoading = mustwatchMoviesQueries.find((c) => c.isLoading === true);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const movies = mustwatchMoviesQueries.map((q) => {
-    q.data.genre_ids = q.data.genres.map((g) => g.id);
-    return q.data;
+  const movies = mustwatchMoviesQueries.map((a) => {
+    a.data.genre_ids = a.data.genres.map((b) => b.id);
+    return a.data;
   });
 
   return (
@@ -36,7 +36,11 @@ const MustwatchPage = () => {
       title="Must Watch Movies"
       movies={movies}
       action={(movie) => {
-        return <WriteReview movie={movie} />
+        return (
+        <>
+        <WriteReview movie={movie} />
+        </>
+        );
       }}
     />
   );

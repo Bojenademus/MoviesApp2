@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../contexts/moviesContext";
@@ -25,13 +26,19 @@ const useStyles = makeStyles({
 
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
-  const { favourites, addToFavourites } = useContext(MoviesContext);
+  const { favourites, mustwatchMovies } = useContext(MoviesContext);
 
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
   } else {
     movie.favourite = false
   }
+
+  if (mustwatchMovies.find((id) => id === movie.id)) {
+    movie.mustwatch = true;
+  } else {
+    movie.mustwatch = false
+  };
 
   return (
     <Card className={classes.card}>
@@ -41,6 +48,10 @@ export default function MovieCard({ movie, action }) {
         movie.favourite ? (
           <Avatar className={classes.avatar}>
             <FavoriteIcon />
+          </Avatar>
+        ) : movie.mustwatch ? (
+        <Avatar className={classes.avatar}>
+            <PlaylistAddIcon />
           </Avatar>
         ) : null
       }
