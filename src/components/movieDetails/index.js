@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -11,6 +11,7 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from '../movieReviews'
+import { getSimilarMovie } from "../../api/tmdb-api";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chipSet: {
     display: "flex",
+    width: '100%',
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
@@ -43,9 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MovieDetails = ( {movie}) => {
+const MovieDetails = ({movie}) => {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false); // New
+  const [similarMovie, setSimilarMovie] = useState([]);
+
+  useEffect(() => {
+    getSimilarMovie(movie.id).then((similarMovie) => {
+      setSimilarMovie(similarMovie);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -78,6 +88,26 @@ const MovieDetails = ( {movie}) => {
           label={`${movie.vote_average} (${movie.vote_count}`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+      </Paper>
+      <Paper component="ul" className={classes.chipSet}>
+        <li>
+          <Chip label="Production Countries" className={classes.chipLabel} color="primary" />
+        </li>
+        {movie.production_countries.map((p) => (
+          <li key={p.name}>
+            <Chip label={p.name} className={classes.chip} />
+          </li>
+        ))}
+      </Paper>
+      <Paper component="ul" className={classes.chipSet}>
+        <li>
+          <Chip label="Similar Movie" className={classes.chipLabel} color="primary" />
+        </li>
+        {similarMovie.map((g) => (
+          <li key={g.title}>
+            <Chip label={g.title} className={classes.chip} />
+          </li>
+        ))}
       </Paper>
       </div>
       {/* New */}
