@@ -13,8 +13,15 @@ import MovieReviews from '../movieReviews'
 import { getSimilarMovie } from "../../api/tmdb-api";
 import { Link } from "react-router-dom";
 
-//attempted to create a list of Similar Movies, unsuccessful
-//import MovieList from "../movieList";
+//New
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardHeader from "@material-ui/core/CardHeader";
+import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
+import StarRateIcon from "@material-ui/icons/StarRate";
+import Grid from "@material-ui/core/Grid";
+
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -45,9 +52,17 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(15),
     right: theme.spacing(2),
   },
+  card: { 
+    maxWidth: 250,
+    margin: theme.spacing(1.5)
+  },
+  media: { height: 350 },
+  avatar: {
+    backgroundColor: "rgb(255, 0, 0)",
+  },
 }));
 
-function MovieDetails ({movie, action}) {
+function MovieDetails ({movie}) {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false); // New
   const [similarMovie, setSimilarMovie] = useState([]);
@@ -102,32 +117,55 @@ function MovieDetails ({movie, action}) {
           </li>
         ))}
       </Paper>
-      <Paper component="ul" className={classes.chipSet}>
-        <li>
-          <Chip label="Similar Movies" className={classes.chipLabel} color="primary" />
-        </li>
-        
-        {similarMovie.map((g, id) => (
-          <li key={id}>
-            <Link to={`/movies/${g.id}`}>
-              <Chip label={g.title} className={classes.chip} onClick={() => {action(g)}} /> 
-            </Link>
-            </li>
-            ))}
-      </Paper>
       </div>
-  
-      {/* Attempted to create a list of similar movies
+
       <Typography variant="h5" component="h3">
         Similar Movies
       </Typography>
-      <Grid container className={classes.root}>
-      <Grid item xs={12}>
-      </Grid>
-      <Grid item container spacing={5}>
-          <MovieList movies={movie} />
+
+      <Grid container>
+      {similarMovie.map((d, id) => (
+        <Grid itemitem xs={12} sm={6} md={4} lg={3} xl={2} key={id}>
+          <Link to={`/movies/${d.id}`}>
+            <Card className={classes.card}>
+              <CardHeader
+                className={classes.header}
+                title={
+                <Typography variant="h6" component="p">
+                  {d.title}{" "}
+                </Typography>
+      }
+              />
+              <CardMedia
+                className={classes.media}
+                image={
+                  d.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${d.poster_path}`
+                  : `${process.env.PUBLIC_URL}/assets/film-poster-placeholder.png`
+                }
+              />
+              <CardContent>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Typography variant="h7" component="p">
+                      <CalendarIcon fontSize="small" />
+                      {d.release_date}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h7" component="p">
+                      <StarRateIcon fontSize="small" />
+                      {"  "} {d.vote_average}{" "}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card> 
+          </Link>
         </Grid>
-    </Grid>  */}
+          
+      ))}
+      </Grid>
       
       <Fab    
         color="secondary"
