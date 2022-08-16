@@ -98,6 +98,20 @@ export const getUpcomingMovies = () => {
     });
   };
 
+  export const getVideos = (id) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}&append_to_response=videos`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+       throw error
+    });
+  };
+
 // will implement this in later stage
 /* export const getPeople = (id) => {
   return fetch(

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -11,9 +12,8 @@ import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from '../movieReviews'
 import { getSimilarMovie } from "../../api/tmdb-api";
+import { getVideos } from "../../api/tmdb-api";
 import { Link } from "react-router-dom";
-
-//New
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -21,6 +21,10 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import Grid from "@material-ui/core/Grid";
+import Spinner from '../spinner'
+import ImageList from "@material-ui/core/ImageList";
+import ImageListItem from "@material-ui/core/ImageListItem";
+import { CardActionArea } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,18 +66,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MovieDetails ({movie}) {
+function MovieDetails ({ movie, video }) {
   const classes = useStyles();
-  const [drawerOpen, setDrawerOpen] = useState(false); // New
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [similarMovie, setSimilarMovie] = useState([]);
+  const [videos, setVideos] = useState([]);
   
   useEffect(() => {
     getSimilarMovie(movie.id).then((movie) => {
       setSimilarMovie(movie);
     });
+     getVideos(movie.id).then((videos) => {
+      setVideos(videos);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  
+   }, []);
 
   return (
     <>
@@ -120,12 +127,35 @@ function MovieDetails ({movie}) {
       </div>
 
       <Typography variant="h5" component="h3">
-        Similar Movies
+        Videos
       </Typography>
 
+
+      <Grid container>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={videos.key}>
+        <Card>
+          <CardActionArea>
+          <CardMedia
+                component="video"
+                src={
+                `https://www.youtube.com/watch?v=${videos.key}`
+                }
+                autoPlay
+
+              />
+              </CardActionArea>
+              </Card>
+              </Grid>
+      </Grid>
+      
+  
+
+      <Typography variant="h5" component="h3">
+        Similar Movies
+      </Typography>
       <Grid container>
       {similarMovie.map((d, id) => (
-        <Grid itemitem xs={12} sm={6} md={4} lg={3} xl={2} key={id}>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id}>
           <Link to={`/movies/${d.id}`}>
             <Card className={classes.card}>
               <CardHeader
@@ -147,13 +177,13 @@ function MovieDetails ({movie}) {
               <CardContent>
                 <Grid container>
                   <Grid item xs={12}>
-                    <Typography variant="h7" component="p">
+                    <Typography variant="h6" component="p">
                       <CalendarIcon fontSize="small" />
                       {d.release_date}
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography variant="h7" component="p">
+                    <Typography variant="h6" component="p">
                       <StarRateIcon fontSize="small" />
                       {"  "} {d.vote_average}{" "}
                     </Typography>
@@ -180,6 +210,6 @@ function MovieDetails ({movie}) {
         <MovieReviews movie={movie} />
       </Drawer>
     </>
-  );
-      }
-export default  MovieDetails ;
+    );
+}
+export default  MovieDetails;
