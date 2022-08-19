@@ -60,17 +60,16 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
-  videoScroll: {
-    height: 525,
+  scroll: {
+    height: 660,
     flexDirection: "column",
     overflow: 'auto',
-    margin: theme.spacing(1.5),
     padding: theme.spacing(1.5),
   },
   video: {
     padding: theme.spacing(0.5),
   },
-  videoClip: { height: 400}
+  videoClip: { height: 500}
 }));
 
 function MovieDetails ({ movie }) {
@@ -140,7 +139,7 @@ function MovieDetails ({ movie }) {
         Videos
       </Typography>
 
-      <Grid container className={classes.videoScroll}>
+      <Grid container className={classes.scroll}>
       {videos.map((v, id ) => (
         <Grid item className={classes.video} key={id} >
         <Card>
@@ -170,7 +169,7 @@ function MovieDetails ({ movie }) {
       <Typography variant="h5" component="h3">
         Similar Movies
       </Typography>
-      <Grid container>
+      <Grid container className={classes.scroll}>
       {similarMovie.map((d, id) => (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id}>
           <Link to={`/movies/${d.id}`}>
