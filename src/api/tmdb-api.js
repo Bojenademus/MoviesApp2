@@ -100,7 +100,7 @@ export const getUpcomingMovies = () => {
 
   export const getVideos = (id) => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}&append_to_response=videos`
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}`
     ).then((response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
@@ -113,7 +113,7 @@ export const getUpcomingMovies = () => {
   };
 
 // will implement this in later stage
-/* export const getPeople = (id) => {
+ export const getCredits = (id) => {
   return fetch(
     `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
   )
@@ -126,4 +126,4 @@ export const getUpcomingMovies = () => {
   .catch((error) => {
     throw error
  });
-} */
+}
