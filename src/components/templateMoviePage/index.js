@@ -8,12 +8,15 @@ import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(7),
   },
   imageListRoot: {
     display: "flex",
+    overflow: 'scroll',
+    maxHeight: 2500,
     flexWrap: "wrap",
     justifyContent: "space-around",
   },
