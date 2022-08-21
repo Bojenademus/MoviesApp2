@@ -69,7 +69,10 @@ const useStyles = makeStyles((theme) => ({
   video: {
     padding: theme.spacing(0.5),
   },
-  videoClip: { height: 500}
+  videoClip: {
+    height: 500,
+    width: 800
+  }
 }));
 
 function MovieDetails ({ movie }) {
@@ -154,11 +157,10 @@ function MovieDetails ({ movie }) {
           <CardActionArea>
             <CardMedia
             className={classes.videoClip}
-              component="video"
-              src={
-              `https://www.youtube.com/watch?v=${v.key}`
+              component="iframe"
+              image={
+              `https://www.youtube.com/embed/${v.key}`
               }
-              autoPlay
             />
           </CardActionArea>
         </Card>
