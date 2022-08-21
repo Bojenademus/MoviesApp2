@@ -14,9 +14,23 @@ const MoviesContextProvider = (props) => {
     }
   };
 
+  const addToFavouritesShows = (show) => {
+    if (!favourites.includes(show.id)) {
+      let newFavourites = [...favourites, show.id];
+      setFavourites(newFavourites);
+    }
+  };
+
   const addToPlaylist = (movie) => {
     if (!mustwatchMovies.includes(movie.id)) {
       let newMustwatchMovies = [...mustwatchMovies, movie.id];
+      setMustwatchMovies(newMustwatchMovies);
+    }
+  };
+
+  const addToPlaylistShows = (show) => {
+    if (!mustwatchMovies.includes(show.id)) {
+      let newMustwatchMovies = [...mustwatchMovies, show.id];
       setMustwatchMovies(newMustwatchMovies);
     }
   };
@@ -25,12 +39,24 @@ const MoviesContextProvider = (props) => {
     setFavourites(favourites.filter((mId) => mId !== movie.id));
   };
 
+  const removeFromFavouritesShows = (show) => {
+    setFavourites(favourites.filter((mId) => mId !== show.id));
+  };
+
   const removeFromMustwatch = (movie) => {
     setMustwatchMovies(mustwatchMovies.filter((mWId) => mWId !== movie.id));
   };
 
+  const removeFromMustwatchShows = (show) => {
+    setMustwatchMovies(mustwatchMovies.filter((mWId) => mWId !== show.id));
+  };
+
   const addReview = (movie, review) => {
     setMyReviews( {...myReviews, [movie.id]: review } )
+  };
+
+  const addReviewShows = (show, review) => {
+    setMyReviews( {...myReviews, [show.id]: review } )
   };
 
  return (
@@ -39,10 +65,15 @@ const MoviesContextProvider = (props) => {
         favourites,
         mustwatchMovies,
         addToFavourites,
+        addToFavouritesShows,
         addToPlaylist,
+        addToPlaylistShows,
         removeFromFavourites,
+        removeFromFavouritesShows,
         removeFromMustwatch,
+        removeFromMustwatchShows,
         addReview,
+        addReviewShows,
       }}
     >
       {props.children}

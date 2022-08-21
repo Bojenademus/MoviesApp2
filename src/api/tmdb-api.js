@@ -96,28 +96,56 @@ export const getUpcomingMovies = () => {
     .catch((error) => {
        throw error
     });
-  };
+};
 
-  export const getVideos = (id) => {
+export const getVideos = (id) => {
     return fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}`
     ).then((response) => {
       if (!response.ok) {
-        throw new Error(response.json());
+        throw new Error(response.json().message);
       }
       return response.json();
     })
     .catch((error) => {
        throw error
     });
-  };
+};
 
 // will implement this in later stage
- export const getCredits = (id) => {
+export const getCredits = (id) => {
   return fetch(
     `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
   )
   .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error
+ });
+};
+
+export const getTVShows = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error
+ });
+};
+
+export const getTVShow = (tv_id) => {
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${tv_id}?api_key${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+  ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
     }
