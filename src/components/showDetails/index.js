@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
-
+import { getCredits } from "../../api/tmdb-api";
 import StarRate from "@material-ui/icons/StarRate";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -40,27 +44,27 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 250,
     margin: theme.spacing(1.5),
   },
-  media: { height: 350 },
+  media: { height: 200 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
-  scroll: {
-    height: 660,
-    flexDirection: "column",
-    overflow: 'auto',
-    padding: theme.spacing(1.5),
-  },
-  video: {
-    padding: theme.spacing(0.5),
-  },
-  videoClip: {
-    height: 500,
-    width: 800
+  
+  actors: {
+    margin: theme.spacing(1.0),
   }
 }));
 
 function ShowDetails ({ show }) {
   const classes = useStyles();
+
+  const [actors, setActors] = useState([]);
+  
+  useEffect(() => {
+    getCredits(show.id).then(actors => {
+      setActors([actors.cast[0], ...actors.cast]);
+      console.log(actors);
+    });
+  },[show.id, actors.cast]);
   
   return (
     <>
@@ -101,6 +105,32 @@ function ShowDetails ({ show }) {
         ))}
       </Paper>
       </div>
+
+      <Typography variant="h5" component="h3">
+        Actors
+      </Typography>
+
+      <Grid container>
+      {actors.map((a, id ) => (
+        <Grid item xs={2} key={id} >
+        <Card className={classes.actors}>
+          <CardMedia
+            className={classes.media}
+            image={`https://image.tmdb.org/t/p/w500${a.profile_path}`
+            }
+          />
+          <CardContent>
+            <Typography variant="h6" component="p">
+              {a.name}
+            </Typography>
+            <Typography variant="h7" component="p">
+              {" as "}{a.character}
+            </Typography>
+          </CardContent>
+        </Card>
+        </Grid>
+      ))}
+      </Grid>
     </>
     );
 }
