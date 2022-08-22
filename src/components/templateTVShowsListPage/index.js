@@ -9,7 +9,7 @@ import ShowList from "../showList";
 
 const useStyles = makeStyles((theme) =>  ({
   root: {
-    backgroundColor: "#bfbfbf",
+    backgroundColor: "black",
     paddingTop: theme.spacing(7),
   },
   fab: {

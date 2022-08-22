@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 250,
     margin: theme.spacing(1.5),
   },
+  linkCard: {
+    textDecoration: "none"
+  },
   media: { height: 200 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
@@ -114,7 +117,7 @@ function ShowDetails ({ show }) {
       <Grid container>
       {actors.map((a, id ) => (
         <Grid item xs={2} key={id} >
-          <Link to={`/actors/${a.id}`}>
+          <Link to={`/actors/${a.id}`} className={classes.linkCard}>
         <Card className={classes.actors}>
           <CardMedia
             className={classes.media}

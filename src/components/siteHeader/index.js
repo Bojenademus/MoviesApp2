@@ -17,18 +17,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appbar: {
-    // background: 'none',
+    background: 'black',
   },
   inactiveLink: {
     color: 'white',
     padding : theme.spacing(1),
-    fontSize: '1.5rem'
+    fontSize: '1.5rem',
+    textDecoration: "none",
   },
   activeLink: {
-    color: 'black',
+    color: 'red',
     padding : theme.spacing(1),
     fontSize: '1.5rem',
-    background: "#bfbfbf"
+    textDecoration: "none",
   }
 }));
 

@@ -14,13 +14,16 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
+  linkCard: {
+    textDecoration: "none",
+  },
   media: { height: 500 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
 });
 
-export default function ShowCard({ show, action }) {
+export default function ShowCard({ show }) {
   const classes = useStyles();
   //Favourites to be done later
 //   const { favourites, mustwatchMovies } = useContext(MoviesContext);
@@ -38,7 +41,7 @@ export default function ShowCard({ show, action }) {
 //   };
 
   return (
-    <Link to={`/shows/${show.id}`}>
+    <Link to={`/shows/${show.id}`} className={classes.linkCard}>
     <Card className={classes.card}>
        <CardHeader
       className={classes.header}

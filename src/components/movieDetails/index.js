@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     listStyle: "none",
     padding: theme.spacing(1.5),
+    paddingLeft: 5,
     margin: 0,
   },
   chipSet: {
@@ -68,11 +69,18 @@ const useStyles = makeStyles((theme) => ({
   },
   video: {
     padding: theme.spacing(0.5),
+    paddingLeft: 0,
   },
   videoClip: {
     height: 500,
     width: 800
-  }
+  },
+  title: {
+    margin: theme.spacing(0.5),
+    paddingLeft: 0,
+    paddingTop : 15,
+    fontWeight: "bold",
+  },
 }));
 
 function MovieDetails ({ movie }) {
@@ -96,7 +104,7 @@ function MovieDetails ({ movie }) {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.title}>
         Overview 
       </Typography>
 
@@ -138,7 +146,7 @@ function MovieDetails ({ movie }) {
       </Paper>
       </div>
 
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.title}>
         Videos
       </Typography>
 
@@ -168,12 +176,12 @@ function MovieDetails ({ movie }) {
       ))}
       </Grid>
 
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.title}>
         Similar Movies
       </Typography>
       <Grid container className={classes.scroll}>
       {similarMovie.map((d, id) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id}>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id} className={classes.list}>
           <Link to={`/movies/${d.id}`}>
             <Card className={classes.card}>
               <CardHeader

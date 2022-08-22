@@ -44,11 +44,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop : 15,
     fontWeight: "bold",
   },
-  fab: {
-    position: "fixed",
-    top: theme.spacing(15),
-    right: theme.spacing(2),
-  },
   card: { 
     maxWidth: 250,
     margin: theme.spacing(1.5),
@@ -64,13 +59,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1.5),
     paddingLeft: 0,
     paddingBottom: 0,
-  },
-  video: {
-    padding: theme.spacing(0.5),
-  },
-  videoClip: {
-    height: 500,
-    width: 800
   }
 }));
 
