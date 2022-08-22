@@ -10,6 +10,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -113,6 +114,7 @@ function ShowDetails ({ show }) {
       <Grid container>
       {actors.map((a, id ) => (
         <Grid item xs={2} key={id} >
+          <Link to={`/actors/${a.id}`}>
         <Card className={classes.actors}>
           <CardMedia
             className={classes.media}
@@ -128,6 +130,7 @@ function ShowDetails ({ show }) {
             </Typography>
           </CardContent>
         </Card>
+        </Link>
         </Grid>
       ))}
       </Grid>
