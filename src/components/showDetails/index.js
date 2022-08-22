@@ -11,6 +11,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
+import CardHeader from "@material-ui/core/CardHeader";
+import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
+import StarRateIcon from "@material-ui/icons/StarRate";
+import TvIcon from '@material-ui/icons/Tv';
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -91,7 +95,7 @@ function ShowDetails ({ show }) {
         ))}
       </Paper>
       <Paper component="ul" className={classes.chipSet}>
-        <Chip icon={<AccessTimeIcon />} label={`${show.number_of_seasons} seasons`} />
+        <Chip icon={<AccessTimeIcon />} label={show.number_of_seasons === 1 ? `${show.number_of_seasons} season` : `${show.number_of_seasons} seasons`} />
         <Chip
           icon={<StarRate />}
           label={`${show.vote_average} (${show.vote_count})`}
@@ -109,6 +113,53 @@ function ShowDetails ({ show }) {
         ))}
       </Paper>
       </div>
+
+      <Typography variant="h5" component="h3" className={classes.title}>
+        Seasons
+      </Typography>
+      <Grid container className={classes.scroll}>
+      {show.seasons.map((s, id) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id} className={classes.list}>
+          <Link to={`/shows/${s.id}/seasons`} className={classes.linkCard}>
+            <Card className={classes.card}>
+              <CardHeader
+                className={classes.header}
+                title={
+                <Typography variant="h6" component="p">
+                  {"Season "}{s.season_number}
+                </Typography>
+                }
+              />
+              <CardMedia
+                className={classes.media}
+                image={
+                  s.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${s.poster_path}`
+                  : `${process.env.PUBLIC_URL}/assets/film-poster-placeholder.png`
+                }
+              />
+              <CardContent>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Typography variant="h6" component="p">
+                      <CalendarIcon fontSize="small" />
+                      {s.air_date}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h6" component="p">
+                      <TvIcon fontSize="small" />
+                      {"  "} {s.episode_count}{" episodes"}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card> 
+          </Link>
+        </Grid>
+          
+      ))}
+      </Grid>
 
       <Typography variant="h5" component="h3">
         Actors
