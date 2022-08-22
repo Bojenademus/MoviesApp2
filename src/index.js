@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes} from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; 
@@ -13,6 +13,7 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import MustwatchPage from "./pages/mustwatchPage";
 import ShowsPage from "./pages/showsPage";
+import ShowDetailsPage from "./pages/showDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/movies/:id" element={<MoviePage/>} />
         <Route path="/" element={<HomePage />} />
         <Route path="/shows" element={<ShowsPage />} />
+        <Route path="/shows/:id" element={<ShowDetailsPage/>} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/movies/upcoming" element={<UpcomingMovies/>} />
         <Route path="/reviews/form" element={<AddMovieReviewPage/>} />

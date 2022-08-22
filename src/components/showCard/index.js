@@ -40,6 +40,7 @@ export default function ShowCard({ show, action }) {
 //   };
 
   return (
+    <Link to={`/shows/${show.id}`}>
     <Card className={classes.card}>
        <CardHeader
       className={classes.header}
@@ -85,5 +86,6 @@ export default function ShowCard({ show, action }) {
         </Grid>
       </CardContent>
     </Card>
+    </Link>
   );
 }
