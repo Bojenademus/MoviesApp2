@@ -90,7 +90,7 @@ function MovieDetails ({ movie }) {
 
   useEffect(() => {
     getVideos(movie.id).then(videos => {
-      setVideos([videos.results[0], ...videos.results]);
+      setVideos([...videos.results]);
     })
   }, [movie.id, videos.results]);
 

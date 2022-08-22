@@ -62,7 +62,7 @@ function ShowDetails ({ show }) {
   
   useEffect(() => {
     getCredits(show.id).then(actors => {
-      setActors([actors.cast[0], ...actors.cast]);
+      setActors([...actors.cast]);
       console.log(actors);
     });
   },[show.id, actors.cast]);
