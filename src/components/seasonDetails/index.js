@@ -56,16 +56,11 @@ const useStyles = makeStyles((theme) => ({
   actors: {
     margin: theme.spacing(1.0),
   },
-<<<<<<< HEAD
   title: {
     margin: theme.spacing(0.5),
     paddingLeft: 0,
     paddingTop : 15,
     fontWeight: "bold",
-=======
-  tooltip: {
-    fontSize: 36
->>>>>>> 945b86bebfe886be2a2692fb57ef914ee0e11b9b
   }
 }));
 
