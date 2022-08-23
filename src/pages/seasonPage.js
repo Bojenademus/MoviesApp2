@@ -2,15 +2,17 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import SeasonDetails from "../components/seasonDetails";
 import PageTemplate from "../components/templateSeasonPage";
-import { getSeason } from '../api/tmdb-api'
+import { getSeason, getEpisodes } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
 const SeasonDetailsPage = () => {
-  const { id, season_number } = useParams();
+  const { id, season_number, episode_number } = useParams();
   const { data: season, error, isLoading, isError } = useQuery(
-    ["season", { id: id, season_number: season_number }],
-    getSeason
+    ["season",
+    { id: id, season_number: season_number, episode_number: episode_number 
+    }],
+    getSeason, getEpisodes
   );
 
   if (isLoading) {

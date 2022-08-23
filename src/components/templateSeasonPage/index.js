@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TemplateShowPage = ({season, children }) => {
+const TemplateSeasonPage = ({season, children }) => {
     const classes = useStyles();
     const { id, season_number } = useParams();
     const { data, error, isLoading, isError } = useQuery(
@@ -70,4 +70,4 @@ const TemplateShowPage = ({season, children }) => {
   );
 };
 
-export default TemplateShowPage;
+export default TemplateSeasonPage;

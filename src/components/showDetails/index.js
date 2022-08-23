@@ -58,7 +58,13 @@ const useStyles = makeStyles((theme) => ({
   
   actors: {
     margin: theme.spacing(1.0),
-  }
+  },
+  title: {
+    margin: theme.spacing(0.5),
+    paddingLeft: 0,
+    paddingTop : 15,
+    fontWeight: "bold",
+  },
 }));
 
 function ShowDetails ({ show }) {
@@ -75,7 +81,7 @@ function ShowDetails ({ show }) {
   
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.title}>
         Overview 
       </Typography>
 
@@ -160,7 +166,7 @@ function ShowDetails ({ show }) {
       ))}
       </Grid>
 
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.title}>
         Actors
       </Typography>
 

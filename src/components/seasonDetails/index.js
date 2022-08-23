@@ -10,6 +10,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import CardHeader from "@material-ui/core/CardHeader";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -54,6 +55,17 @@ const useStyles = makeStyles((theme) => ({
   
   actors: {
     margin: theme.spacing(1.0),
+  },
+<<<<<<< HEAD
+  title: {
+    margin: theme.spacing(0.5),
+    paddingLeft: 0,
+    paddingTop : 15,
+    fontWeight: "bold",
+=======
+  tooltip: {
+    fontSize: 36
+>>>>>>> 945b86bebfe886be2a2692fb57ef914ee0e11b9b
   }
 }));
 
@@ -62,7 +74,7 @@ function SeasonDetails ({ season }) {
   
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.title}>
         Overview 
       </Typography>
 
@@ -70,10 +82,7 @@ function SeasonDetails ({ season }) {
         {season.overview}
       </Typography>
       <div className={classes.chipRoot}>
-      <Paper component="ul" className={classes.chipSet}>
-        <Chip icon={<AccessTimeIcon />} label={`${season.episode_count} season` } />
         <Chip label={`Released: ${season.air_date}`} />
-      </Paper>
       </div>
 
       <Typography variant="h5" component="h3" className={classes.title}>
@@ -82,7 +91,7 @@ function SeasonDetails ({ season }) {
       <Grid container className={classes.scroll}>
       {season.episodes.map((e, id) => (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id} className={classes.list}>
-          {/* <Link to={`/shows/${s.id}/seasons/${season.season_number}`} className={classes.linkCard}> */}
+          <Tooltip title={<p style={{ fontSize: 18, lineHeight: 1.6 }}>{e.overview}</p> } >
             <Card className={classes.card}>
               <CardHeader
                 className={classes.header}
@@ -95,7 +104,7 @@ function SeasonDetails ({ season }) {
               <CardMedia
                 className={classes.media}
                 image={
-                  e.poster_path
+                  e.still_path
                   ? `https://image.tmdb.org/t/p/w500/${e.still_path}`
                   : `${process.env.PUBLIC_URL}/assets/film-poster-placeholder.png`
                 }
@@ -111,9 +120,8 @@ function SeasonDetails ({ season }) {
                 </Grid>
               </CardContent>
             </Card> 
-          {/* </Link> */}
+            </Tooltip>
         </Grid>
-          
       ))}
       </Grid>
 
