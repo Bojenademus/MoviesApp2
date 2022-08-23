@@ -61,14 +61,14 @@ e.g.
 ![][a]
 ![][a1]
 
-[d1]: ./public/discover1.png
-[m1]: ./public/movie.png
-[m2]: ./public/movie2.png
-[u]: ./public/upcoming1.png
-[m]: ./public/mustwatch1.png
-[sh]: ./public/shows.png
-[sh1]: ./public/show1.png
-[sh2]: ./public/show2.png
+[d1]: ./public/discover1.PNG
+[m1]: ./public/movie.PNG
+[m2]: ./public/movie2.PNG
+[u]: ./public/upcoming1.PNG
+[m]: ./public/mustwatch1.PNG
+[sh]: ./public/shows.PNG
+[sh1]: ./public/show1.PNG
+[sh2]: ./public/show2.PNG
 [s]: ./public/season.png
-[a]: ./public/actor1.png
-[a1]: ./public/actor2.png
+[a]: ./public/actor1.PNG
+[a1]: ./public/actor2.PNG
