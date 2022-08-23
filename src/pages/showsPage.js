@@ -3,7 +3,6 @@ import PageTemplate from "../components/templateTVShowsListPage";
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getTVShows} from '../api/tmdb-api'
-//import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
 const ShowsPage = (props) => {
   const {  data, error, isLoading, isError }  = useQuery('discover shows', getTVShows);
@@ -21,9 +20,6 @@ const ShowsPage = (props) => {
     <PageTemplate
       title="Discover TV Shows"
       shows={shows}
-      // action={(show) => {
-      //   return <AddToFavouritesIcon show={show} />
-      // }}
     />
 );
 };

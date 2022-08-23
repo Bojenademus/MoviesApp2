@@ -1,12 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-//import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
-//import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import Grid from "@material-ui/core/Grid";
@@ -25,37 +23,12 @@ const useStyles = makeStyles({
 
 export default function ShowCard({ show }) {
   const classes = useStyles();
-  //Favourites to be done later
-//   const { favourites, mustwatchMovies } = useContext(MoviesContext);
-
-//   if (favourites.find((id) => id === show.id)) {
-//     show.favourite = true;
-//   } else {
-//     show.favourite = false
-//   }
-
-//   if (mustwatchMovies.find((id) => id === show.id)) {
-//     show.mustwatch = true;
-//   } else {
-//     show.mustwatch = false
-//   };
 
   return (
     <Link to={`/shows/${show.id}`} className={classes.linkCard}>
     <Card className={classes.card}>
        <CardHeader
       className={classes.header}
-    //   avatar={
-    //     show.favourite ? (
-    //       <Avatar className={classes.avatar}>
-    //         <FavoriteIcon />
-    //       </Avatar>
-    //     ) : show.mustwatch ? (
-    //     <Avatar className={classes.avatar}>
-    //         <PlaylistAddIcon />
-    //       </Avatar>
-    //     ) : null
-    //   }
       title={
         <Typography variant="h5" component="p">
           {show.name}{" "}

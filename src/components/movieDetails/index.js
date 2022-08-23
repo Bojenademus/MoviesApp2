@@ -96,6 +96,7 @@ function MovieDetails ({ movie }) {
     });
   },[movie.id]);
 
+  //use of spread operator to iterate over all the array elements
   useEffect(() => {
     getVideos(movie.id).then(videos => {
       setVideos([...videos.results]);
