@@ -236,11 +236,12 @@ export const getTVShow = (args) => {
   });
 };
 
-export const getSeasons = (args) => {
+export const getSeason = (args) => {
   const [, idPart] = args.queryKey;
-  const { id, number } = idPart;
+  const { id, season_number } = idPart;
+  console.log(id, season_number, "tmdb");
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}/season/${number}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.REACT_APP_TMDB_KEY}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -250,5 +251,20 @@ export const getSeasons = (args) => {
   .catch((error) => {
     throw error
   });
-}
+};
   
+export const getSeasonImages = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id, season_number } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}/season/${season_number}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error
+ });
+};

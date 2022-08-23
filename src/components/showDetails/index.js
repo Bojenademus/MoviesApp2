@@ -13,7 +13,6 @@ import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import CardHeader from "@material-ui/core/CardHeader";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
-import StarRateIcon from "@material-ui/icons/StarRate";
 import TvIcon from '@material-ui/icons/Tv';
 
 const useStyles = makeStyles((theme) => ({
@@ -120,7 +119,7 @@ function ShowDetails ({ show }) {
       <Grid container className={classes.scroll}>
       {show.seasons.map((s, id) => (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={id} className={classes.list}>
-          <Link to={`/shows/${s.id}/seasons`} className={classes.linkCard}>
+          <Link to={`/shows/${show.id}/season/${s.season_number}`} className={classes.linkCard}>
             <Card className={classes.card}>
               <CardHeader
                 className={classes.header}
